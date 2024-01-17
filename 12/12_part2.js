@@ -9,13 +9,20 @@
 
     const cache = {};
 
-    function day12_part1Func(input) {
+    function day12_part2Func(input) {
         const lines = input.split('\n');    
         let result = 0;
 
         for(const line of lines){
-            const record = line.split(' ')[0];
-            const springMap = line.split(' ')[1].split(',').map(x => parseInt(x));
+            const recordLine = line.split(' ')[0];
+            const springMapLine = line.split(' ')[1].split(',').map(x => parseInt(x));
+            let record = "";
+            let springMap = [];
+            for(let i = 0; i < 5; i++){
+                record += recordLine;
+                if(i < 4) record += "?";
+                springMap = springMap.concat(springMapLine);
+            }
             // console.log(record, springMap);
             
             result += calculateCombinations(record, springMap);
@@ -53,13 +60,13 @@
 
 
     // TEST
-    const resultTest = day12_part1Func(test);
-    console.log(resultTest); //21
+    const resultTest = day12_part2Func(test);
+    console.log(resultTest); //525152
     
     // REAL INPUT
     var fs = require("fs");
     var text = fs.readFileSync("./input.txt", "utf-8");
-    const result = day12_part1Func(text);
+    const result = day12_part2Func(text);
     console.log(result);
 
 }
