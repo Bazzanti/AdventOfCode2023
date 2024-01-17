@@ -33,7 +33,7 @@
         let count = 0;
 
         if(!!cache[line]) return cache[line];
-        if(springMap.length === 0) return record.includes('#') ? 1 : 0;
+        if(springMap.length === 0) return record.includes('#') ? 0 : 1;
         if(record.length - springMap.length + 1 - springMap.reduce((a,b) => a+b, 0) < 0) return 0;
 
         const firstGroupDamagedOrUnknown = record.slice(0, springMap[0]).includes('.') ? 0 : 1;
@@ -46,7 +46,7 @@
         if(firstGroupDamagedOrUnknown > 0 && record[springMap[0]] != '#'){
             count += calculateCombinations(removeStart(record.slice(springMap[0] + 1)), springMap.slice(1));
         }
-        console.log(count, line)
+       // console.log(count, line)
         
        cache[line] = count;
         return count;
